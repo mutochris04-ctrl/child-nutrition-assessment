@@ -38,6 +38,10 @@ def assess():
         return jsonify({"error": "muac_cm must be greater than 0"}), 400
     return jsonify({"muac_cm": muac, "status": classify_muac(muac, bool(data.get("oedema", False)))})
 
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"})
+
 
 if __name__ == "__main__":
     app.run(debug=True)

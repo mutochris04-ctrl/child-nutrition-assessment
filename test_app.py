@@ -56,3 +56,11 @@ def test_assess_invalid_muac():
     response = client.post('/assess', json={'muac_cm': 'abc'})
     assert response.status_code == 400
 
+
+
+def test_health():
+    client = app.test_client()
+    response = client.get('/health')
+    assert response.status_code == 200
+    assert response.get_json() == {'status': 'ok'}
+

@@ -31,7 +31,7 @@ def bmi():
 def assess():
     data = request.get_json()
     muac = float(data["muac_cm"])
-    return jsonify({"muac_cm": muac, "status": classify_muac(muac)})
+    return jsonify({"muac_cm": muac, "status": classify_muac(muac, bool(data.get("oedema", False)))})
 
 
 if __name__ == "__main__":

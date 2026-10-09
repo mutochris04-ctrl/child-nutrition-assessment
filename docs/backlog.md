@@ -10,6 +10,7 @@ Priority uses MoSCoW (Must / Should / Could). Estimates are story points (Fibona
 | US4 | As a system administrator, I want a health check endpoint, so that I can confirm the service is running. | Should | 1 | 2 |
 | US5 | As a developer, I want requests and errors to be logged, so that I can monitor and debug the service. | Should | 2 | 2 |
 | US6 | As a health worker, I want to see a history of past assessments, so that I can follow a child's progress. | Could | 5 | Future |
+| US7 | As a health worker, I want to record whether a child has oedema (swelling in both feet), so that children with severe malnutrition are not missed. | Must | 2 | 2 |
 
 ## Acceptance Criteria
 

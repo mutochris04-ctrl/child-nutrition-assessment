@@ -9,8 +9,10 @@ def calculate_bmi(weight_kg, height_cm):
     return round(weight_kg / (height_m ** 2), 1)
 
 
-def classify_muac(muac_cm):
+def classify_muac(muac_cm, oedema=False):
     """Classify nutrition status from MUAC (WHO cut-offs, children 6-59 months)."""
+    if oedema:
+        return "Severe Acute Malnutrition"
     if muac_cm < 11.5:
         return "Severe Acute Malnutrition"
     if muac_cm < 12.5:

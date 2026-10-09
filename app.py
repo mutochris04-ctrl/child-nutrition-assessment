@@ -30,7 +30,12 @@ def bmi():
 @app.route("/assess", methods=["POST"])
 def assess():
     data = request.get_json()
-    muac = float(data["muac_cm"])
+    try:
+        muac = float(data["muac_cm"])
+    except (KeyError, TypeError, ValueError):
+        return jsonify({"error": "muac_cm is required and must be a number"}), 400
+    if muac <= 0:
+        return jsonify({"error": "muac_cm must be greater than 0"}), 400
     return jsonify({"muac_cm": muac, "status": classify_muac(muac, bool(data.get("oedema", False)))})
 
 

@@ -44,3 +44,15 @@ def test_assess_endpoint():
 
 def test_muac_oedema():
     assert classify_muac(13.0, oedema=True) == "Severe Acute Malnutrition"
+
+def test_assess_missing_muac():
+    client = app.test_client()
+    response = client.post('/assess', json={})
+    assert response.status_code == 400
+
+
+def test_assess_invalid_muac():
+    client = app.test_client()
+    response = client.post('/assess', json={'muac_cm': 'abc'})
+    assert response.status_code == 400
+

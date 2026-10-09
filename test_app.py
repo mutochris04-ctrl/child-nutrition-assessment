@@ -40,3 +40,7 @@ def test_assess_endpoint():
     response = client.post("/assess", json={"muac_cm": 11.0})
     assert response.status_code == 200
     assert response.get_json()["status"] == "Severe Acute Malnutrition"
+
+
+def test_muac_oedema():
+    assert classify_muac(13.0, oedema=True) == "Severe Acute Malnutrition"

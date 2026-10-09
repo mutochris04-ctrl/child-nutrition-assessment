@@ -64,3 +64,11 @@ def test_health():
     assert response.status_code == 200
     assert response.get_json() == {'status': 'ok'}
 
+
+
+def test_logs_requests(caplog):
+    caplog.set_level('INFO')
+    client = app.test_client()
+    client.get('/health')
+    assert 'GET /health -> 200' in caplog.text
+

@@ -1,0 +1,10 @@
+2026-10-12 08:27:06,056 INFO GET /health -> 200
+2026-10-12 08:27:06,058 INFO Assessment: muac_cm=11.0 oedema=False -> Severe Acute Malnutrition
+2026-10-12 08:27:06,060 INFO POST /assess -> 200
+2026-10-12 08:27:06,062 INFO Assessment: muac_cm=12.0 oedema=False -> Moderate Acute Malnutrition
+2026-10-12 08:27:06,064 INFO POST /assess -> 200
+2026-10-12 08:27:06,066 INFO Assessment: muac_cm=13.5 oedema=True -> Severe Acute Malnutrition
+2026-10-12 08:27:06,067 INFO POST /assess -> 200
+2026-10-12 08:27:06,069 WARNING POST /assess -> 400
+2026-10-12 08:27:06,071 WARNING POST /assess -> 400
+2026-10-12 08:27:06,073 INFO POST /bmi -> 200

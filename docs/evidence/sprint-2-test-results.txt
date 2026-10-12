@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: child-nutrition-assessment
+collecting ... collected 16 items
+
+test_app.py::test_calculate_bmi PASSED                                   [  6%]
+test_app.py::test_bmi_endpoint PASSED                                    [ 12%]
+test_app.py::test_muac_severe PASSED                                     [ 18%]
+test_app.py::test_muac_moderate PASSED                                   [ 25%]
+test_app.py::test_muac_normal PASSED                                     [ 31%]
+test_app.py::test_muac_boundaries PASSED                                 [ 37%]
+test_app.py::test_assess_endpoint PASSED                                 [ 43%]
+test_app.py::test_muac_oedema PASSED                                     [ 50%]
+test_app.py::test_assess_missing_muac PASSED                             [ 56%]
+test_app.py::test_assess_invalid_muac PASSED                             [ 62%]
+test_app.py::test_health PASSED                                          [ 68%]
+test_app.py::test_logs_requests PASSED                                   [ 75%]
+test_app.py::test_assess_oedema_true PASSED                              [ 81%]
+test_app.py::test_assess_oedema_text_rejected PASSED                     [ 87%]
+test_app.py::test_logs_assessment_result PASSED                          [ 93%]
+test_app.py::test_invalid_request_logged_as_warning PASSED               [100%]
+
+============================== 16 passed in 0.18s ==============================

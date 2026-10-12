@@ -84,3 +84,17 @@ def test_assess_oedema_text_rejected():
     client = app.test_client()
     response = client.post('/assess', json={'muac_cm': 13.0, 'oedema': 'false'})
     assert response.status_code == 400
+
+
+def test_logs_assessment_result(caplog):
+    caplog.set_level('INFO')
+    client = app.test_client()
+    client.post('/assess', json={'muac_cm': 11.0})
+    assert 'Severe Acute Malnutrition' in caplog.text
+
+
+def test_invalid_request_logged_as_warning(caplog):
+    caplog.set_level('INFO')
+    client = app.test_client()
+    client.post('/assess', json={})
+    assert 'WARNING' in caplog.text

@@ -1,4 +1,9 @@
+import logging
+
 from flask import Flask, jsonify, request
+
+# Show the time and level (INFO / WARNING) in front of every log message
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 app = Flask(__name__)
 
@@ -39,11 +44,17 @@ def assess():
     oedema = data.get("oedema", False)
     if type(oedema) != bool:
         return jsonify({"error": "oedema must be true or false"}), 400
-    return jsonify({"muac_cm": muac, "status": classify_muac(muac, oedema)})
+    status = classify_muac(muac, oedema)
+    app.logger.info("Assessment: muac_cm=%s oedema=%s -> %s", muac, oedema, status)
+    return jsonify({"muac_cm": muac, "status": status})
 
 @app.after_request
 def log_request(response):
-    app.logger.info("%s %s -> %s", request.method, request.path, response.status_code)
+    if response.status_code >= 400:
+        # Wrong input or errors are logged as warnings
+        app.logger.warning("%s %s -> %s", request.method, request.path, response.status_code)
+    else:
+        app.logger.info("%s %s -> %s", request.method, request.path, response.status_code)
     return response
 
 

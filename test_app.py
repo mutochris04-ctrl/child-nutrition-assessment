@@ -72,3 +72,15 @@ def test_logs_requests(caplog):
     client.get('/health')
     assert 'GET /health -> 200' in caplog.text
 
+
+def test_assess_oedema_true():
+    client = app.test_client()
+    response = client.post('/assess', json={'muac_cm': 13.0, 'oedema': True})
+    assert response.get_json()['status'] == 'Severe Acute Malnutrition'
+
+
+def test_assess_oedema_text_rejected():
+    # "false" as text must not be read as True
+    client = app.test_client()
+    response = client.post('/assess', json={'muac_cm': 13.0, 'oedema': 'false'})
+    assert response.status_code == 400

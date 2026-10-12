@@ -36,7 +36,10 @@ def assess():
         return jsonify({"error": "muac_cm is required and must be a number"}), 400
     if muac <= 0:
         return jsonify({"error": "muac_cm must be greater than 0"}), 400
-    return jsonify({"muac_cm": muac, "status": classify_muac(muac, bool(data.get("oedema", False)))})
+    oedema = data.get("oedema", False)
+    if type(oedema) != bool:
+        return jsonify({"error": "oedema must be true or false"}), 400
+    return jsonify({"muac_cm": muac, "status": classify_muac(muac, oedema)})
 
 @app.after_request
 def log_request(response):
